@@ -52,10 +52,3 @@ Model evaluation includes:
 - Assist in early-stage detection of dementia
 
 ---
-
-## 🚀 How to Run
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Farhanbwn/Dementia-Prediction-Model.git
-   cd Dementia-Prediction-Model
