@@ -1,7 +1,17 @@
 import pickle
 import numpy as np
 import streamlit as st
- 
+from pymongo import MongoClient
+import datetime 
+
+
+
+# Connect to MongoDB Atlas
+client = MongoClient("mongodb+srv://farhanbwn2003:NKsnhL98m3vKciPU@dementiadb.8jegrik.mongodb.net/?retryWrites=true&w=majority&appName=DementiaDB")
+db = client["DementiaDB"]
+collection = db["Dataset"]
+
+
 
 ### Loading the Saved Model
 loaded_model = pickle.load(open('trained_model.sav', 'rb'))
@@ -36,6 +46,7 @@ def main():
     st.title('Dementia Prediction Web App')
 
     ### taking the input in the variables from the user
+    Name = st.text_input('Enter the Patient Name')
     # Row 1
     r1c1, r1c2, r1c3, r1c4 = st.columns(4)
     with r1c1:
@@ -95,6 +106,41 @@ def main():
                 return
     
             diagnosis = dementia_prediction([Visit,MR_Delay,Gender_val,Hand_val,Age,EDUC,SES,MMSE,CDR,eTIV,nWBV,ASF])
+
+
+            try:
+                input_values = [
+                    float(Visit), float(MR_Delay), Gender_val, Hand_val,
+                    float(Age), float(EDUC), float(SES), float(MMSE),
+                    float(CDR), float(eTIV), float(nWBV), float(ASF)
+                ]
+            except ValueError:
+                st.error("Please enter numeric values in all fields except Gender and Hand.")
+                return
+
+            diagnosis = dementia_prediction(input_values)
+
+            # Save to MongoDB Atlas
+            record = {
+                "timestamp": datetime.datetime.now(),
+                "Name": Name,
+                "Visit": Visit,
+                "MR_Delay": MR_Delay,
+                "Gender": Gender,
+                "Hand": Hand,
+                "Age": Age,
+                "EDUC": EDUC,
+                "SES": SES,
+                "MMSE": MMSE,
+                "CDR": CDR,
+                "eTIV": eTIV,
+                "nWBV": nWBV,
+                "ASF": ASF,
+                "Prediction": diagnosis
+            }
+
+            collection.insert_one(record)
+            # st.success("Prediction saved to database.")
 
          
     # Show diagnosis in center
