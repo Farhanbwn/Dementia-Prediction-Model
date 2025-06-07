@@ -85,8 +85,14 @@ def main():
 
     button_col1, button_col2, button_col3, button_col4, button_col5 = st.columns(5)
     with button_col3:
-        if st.button('Test Result'):
+        if st.button("Test Result"):
             
+            # Check for any empty fields
+            required_fields = [Name, Visit, MR_Delay, Gender, Hand, Age, EDUC, SES, MMSE, CDR, eTIV, nWBV, ASF]
+            if any(field.strip() == '' for field in required_fields):
+                    st.error("Please fill in all input fields.")
+                    return
+
             # Convert Gender input
             if Gender.lower() == 'M' or Gender.lower() == 'm':
                 Gender_val = 0
