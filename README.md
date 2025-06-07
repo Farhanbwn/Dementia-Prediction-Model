@@ -21,6 +21,7 @@ The dataset contains the following columns:
 | `CDR`         | Clinical Dementia Rating |
 | `eTIV`        | Estimated Total Intracranial Volume |
 | `nWBV`        | Normalized Whole Brain Volume |
+| `ASF`         |Atlas Scaling Factor |
 
 
 ---
