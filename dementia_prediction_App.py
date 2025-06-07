@@ -50,9 +50,9 @@ def main():
     # Row 1
     r1c1, r1c2, r1c3, r1c4 = st.columns(4)
     with r1c1:
-        Visit = st.text_input('Visit')
+        Visit = st.number_input('Visit')
     with r1c2:
-        MR_Delay = st.text_input('MR Delay')
+        MR_Delay = st.number_input('MR Delay')
     with r1c3:
         Gender = st.text_input('Gender (M/F)')
     with r1c4:
@@ -61,24 +61,24 @@ def main():
     # Row 2
     r2c1, r2c2, r2c3, r2c4 = st.columns(4)
     with r2c1:
-        Age = st.text_input('Age')
+        Age = st.number_input('Age')
     with r2c2:
-        EDUC = st.text_input('Education (Years)')
+        EDUC = st.number_input('Education (Years)')
     with r2c3:
-        SES = st.text_input('Socioeconomic Status')
+        SES = st.number_input('Socioeconomic Status')
     with r2c4:
-        MMSE = st.text_input('MMSE Score')
+        MMSE = st.number_input('MMSE Score')
 
     # Row 3
     r3c1, r3c2, r3c3, r3c4 = st.columns(4)
     with r3c1:
-        CDR = st.text_input('CDR')
+        CDR = st.number_input('CDR')
     with r3c2:
-        eTIV = st.text_input('eTIV')
+        eTIV = st.number_input('eTIV')
     with r3c3:
-        nWBV = st.text_input('nWBV')
+        nWBV = st.number_input('nWBV')
     with r3c4:
-        ASF = st.text_input('ASF')
+        ASF = st.number_input('ASF')
 
 
     diagnosis = ''
@@ -89,7 +89,7 @@ def main():
             
             # Check for any empty fields
             required_fields = [Name, Visit, MR_Delay, Gender, Hand, Age, EDUC, SES, MMSE, CDR, eTIV, nWBV, ASF]
-            if any(field.strip() == '' for field in required_fields):
+            if any(isinstance(field, str) and field.strip() == '' for field in required_fields):
                     st.error("Please fill in all input fields.")
                     return
 
