@@ -50,9 +50,9 @@ def main():
     # Row 1
     r1c1, r1c2, r1c3, r1c4 = st.columns(4)
     with r1c1:
-        Visit = st.number_input('Visit')
+        Visit = st.number_input('Visit', min_value=0, step=1)
     with r1c2:
-        MR_Delay = st.number_input('MR Delay')
+        MR_Delay = st.number_input('MR Delay', min_value=0, step=1)
     with r1c3:
         Gender = st.text_input('Gender (M/F)')
     with r1c4:
@@ -61,9 +61,9 @@ def main():
     # Row 2
     r2c1, r2c2, r2c3, r2c4 = st.columns(4)
     with r2c1:
-        Age = st.number_input('Age')
+        Age = st.number_input('Age', min_value=0, step=1)
     with r2c2:
-        EDUC = st.number_input('Education (Years)')
+        EDUC = st.number_input('Education (Years)', min_value=0, step=1)
     with r2c3:
         SES = st.number_input('Socioeconomic Status')
     with r2c4:
@@ -74,7 +74,7 @@ def main():
     with r3c1:
         CDR = st.number_input('CDR')
     with r3c2:
-        eTIV = st.number_input('eTIV')
+        eTIV = st.number_input('eTIV', min_value=0, step=1)
     with r3c3:
         nWBV = st.number_input('nWBV')
     with r3c4:
