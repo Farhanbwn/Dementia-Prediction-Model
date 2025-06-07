@@ -7,7 +7,7 @@ import datetime
 
 
 # Connect to MongoDB Atlas
-client = MongoClient("mongodb+srv://farhanbwn2003:NKsnhL98m3vKciPU@dementiadb.8jegrik.mongodb.net/?retryWrites=true&w=majority&appName=DementiaDB")
+client = MongoClient(st.secrets["mongodb"]["uri"])
 db = client["DementiaDB"]
 collection = db["Dataset"]
 
