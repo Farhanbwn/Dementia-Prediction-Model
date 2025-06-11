@@ -76,9 +76,9 @@ def main():
     with r3c2:
         eTIV = st.number_input('eTIV', min_value=0, step=1)
     with r3c3:
-        nWBV = st.number_input('nWBV')
+        nWBV = st.number_input('nWBV',format="%.3f")
     with r3c4:
-        ASF = st.number_input('ASF')
+        ASF = st.number_input('ASF',format="%.3f")
 
 
     diagnosis = ''
@@ -105,7 +105,7 @@ def main():
             # Convert Hand input
             if Hand.lower() == 'R' or Hand.lower() == 'r':
                 Hand_val = 0
-            elif Hand.lower() == 'L' or Hand.lower() == 'L':
+            elif Hand.lower() == 'L' or Hand.lower() == 'l':
                 Hand_val = 1
             else:
                 st.error("Please enter 'R' or 'L' for Hand.")
