@@ -144,33 +144,6 @@ testing_data_acc = accuracy_score(x_test_predit,y_test)
 print("Accuracy score of x_test is ",testing_data_acc)
 
 
-# ### taking the input in the variables from the user
-# # Visit = int(input("Enter the number of time the pesent visited :"))
-# # MR_Delay = int(input("Enter the MR Delay :"))
-# # Gender = (input("Enter the Gender of the pesent :"))
-# # if(Gender == "M"):
-# #     Gender = 0
-# # elif(Gender == 'F'):
-# #     Gender = 1
-# # else:
-# #     print("Please Enter M or F")
-# # Hand = (input("Enter the Hand of the pesent :"))
-# # if(Hand == "R"):
-# #     Hand = 0
-# # elif(Hand == 'L'):
-# #     Hand = 1
-# # else:
-# #     print("Please Enter R or L")
-# # Age = int(input("Enter the Age of the pesent:"))
-# # EDUC = int(input("Enter the EDUC of the pesent :"))
-# # SES = int(input("Enter the SES of the pesent :"))
-# # MMSE = int(input("Enter the MMSR:"))
-# # CDR = int(input("Enter the CDR:"))
-# # eTIV = int(input("Enter the eTIV:"))
-# # nWBV = float(input("Enter the nWBV:"))
-# # ASF = float(input("Enter the ASF:"))
-
-
 # # # ### taking the input from the user
 # # # input_data = (Visit,MR_Delay,Gender,Hand,Age,EDUC,SES,MMSE,CDR,eTIV,nWBV,ASF)
 
@@ -188,7 +161,8 @@ input_data_reshape = input_data_as_numpy.reshape(1,-1)
 # print(std_data)
 
 # printing the prediction 
-prediction = classifier.predict(input_data_reshape)
+std_data = Stand.transform(input_data_reshape)
+prediction = classifier.predict(std_data)
 print(prediction)
 
 # printing the prediction 
@@ -203,8 +177,9 @@ else:
 ### Saving the Trained Model
 import pickle
 
-filename = 'trained_model.sav'
-pickle.dump(classifier, open(filename, 'wb'))
+
+pickle.dump(classifier, open('trained_model.sav', 'wb'))
+pickle.dump(Stand, open('scaler.sav', 'wb'))
 
 ### Loading the Saved Model
 loaded_model = pickle.load(open('trained_model.sav', 'rb'))
@@ -223,7 +198,8 @@ input_data_reshape = input_data_as_numpy.reshape(1,-1)
 # print(std_data)
 
 # printing the prediction 
-prediction = loaded_model.predict(input_data_reshape)
+std_data = Stand.transform(input_data_reshape)
+prediction = classifier.predict(std_data)
 print(prediction)
 
 # printing the prediction 
