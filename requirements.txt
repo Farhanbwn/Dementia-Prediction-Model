@@ -4,3 +4,4 @@ streamlit==1.52.2
 scikit-learn==1.6.1
 pandas==2.3.3
 pymongo==4.16.0
+reportlab==4.4.9
